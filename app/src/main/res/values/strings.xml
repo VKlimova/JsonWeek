@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="edi">Edit</string>
+    <string name="selal">Select All</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
+    <string name="shar">Share</string>
+    <string name="impor">Import</string>
+    <string name="save">Save</string>
+    <string name="send">Send</string>
+    <string name="help">Help</string>
+
+
+    <string-array name="daySchedule">
+        <item>
+        \n19:00-20:30\n Хатха йога(Игорь)\n
+        \n19:00-20:00\n HYDROTONE ($$$ Алена)\n SUPER STRONG(Аракел)\n БОКС	(Олег)\n MIX FIGHT (Магомед)\n
+        \n19:30-20:30\n ZUMBAFITNES(Диана)\n
+        \n20:00-21:00\n TABS+flex(Аракел)\n КИКБОКСИНГ(Алан)\n
+        \n20:30-21:30\n Джиу-джицу($ Игорь)\n CYCLE($ Диана)\n
+        </item>
+        <item>
+            \n18:00-19:00\n LOWER BODY (Таня)\n
+            \n19:00-20:00\n Карате (Александр)\n БОКС\n KENDO($$$ Вадим)\n КУНДАЛИНИ ЙОГА+НИДРА (Ирина)\n
+            \n20:00-21:00\n Aqua Mix(Настя)\n MUAY THAI (Эллади)\n PILATES(Таня)\n AIKIDO(Вадим)\n
+        </item>
+        <item>
+            \n18:00-19:00\n ЗДОРОВАЯ СПИНА (Зоряна)\n
+            \n19:00-20:00\n MIX FIGHT (MMA)(Магомед)\n TRX(Джем)\n Аэройога($$$ Ирина)\n БОКС(Олег)\n INTERVAL(Зоряна)\n Aqua Mix(Алексей)\n
+            \n20:00-21:00\n Джиу-джицу ($ Игорь)\n КИКБОКСИНГ\n CYCLE($$$ Зоряна)\n КРУГОВАЯ ТРЕНИРОВКА(Джем)\n
+            \n20:30-21:30\n ZUMBAFITNES (Диана)\n
+            \n21:00-22:00\n Тайцзи-циань ($$$ Алексей)\n
+        </item>
+        <item>
+            \n18:00-19:00\n Z-CORE (Юля)\n
+            \n19:00-20:00\n КУНДАЛИНИ ЙОГА+НИДРА(Ирина)\n Карате(Александр)\n Миофасциальное расслабление (Джем)\n BASIC STEP(Юля)\n KENDO ($$$ Вадим)\n БОКС($$$ Роман)\n
+            \n20:00-21:00\n AQUA ABD BACK (Алексей)\n MUAY THAI (Эллади)\n FUNCTIONAL TRAINING(Джем)\n
+        </item>
+        <item>
+            \n19:00-20:00\n UPPER BODY(Аракел)\n БОКС (Александр)\n GRAPPLING (Магомед)\n Aqua Shape(Алексей)\n
+            \n20:00-21:00\n Джиу-джицу ($ Игорь)\n LOWER BODY (Аракел)\n MUAY THAI (Эллади)\n
+        </item>
+        <item>
+            \n10:00 - 11:00\n ЗДОРОВАЯ СПИНА (Аня)\n
+\n11:00-12:00\n PUMP (Аня)\n AQUA NOODLES (Алексей)\n
+\n12:00-13:00\n TRX+CYCLE ($ Аня)\n AIKIDO ($$$ Вадим)\n BELLY DANCE (Нелли)\n HYDROTONE ($ Алексей)\n
+\n12:30-14:00\n Кундалини йога (Мария)\n
+\n13:00-14:00\n CROSSFIT ($ Сергей)\n KENDO (Вадим)\n TABS+flex(Нэлли)\n
+\n14:00-15:00\n КИКБОКСИНГ ($$$ Эллади)\n
+\n15:00-16:00\n Аэройога ($$$ Ирина)\n
+        </item>
+        <item>
+            \n10:00-11:00\n Изотон (Юля)\n
+\n12:00-13:00\nAqua Intro (Алена)\n SUPER STRONG (Юля)\n AIKIDO ($$$ Вадим)\n
+\n13:00-14:00\n AIKIDO (Вадим)\n
+\n14:00-15:00\n Тайцзи-циань ($$$ Алексей)\n Женская практика (Ленара)\n
+\n15:30-17:00\n Танец Мандала (Ленара)\n
+        </item>
+    </string-array>
+
+    <string-array name="dayName">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+<string name="someimage">Image</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="help1">Делай добро!</string>
+</resources>

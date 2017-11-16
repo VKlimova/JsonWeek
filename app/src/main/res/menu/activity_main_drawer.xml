@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_shar"
+            android:icon="@android:drawable/ic_menu_share"
+            android:title="@string/shar" />
+        <item
+            android:id="@+id/nav_edit"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/edi" />
+        <item
+            android:id="@+id/nav_import"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/impor" />
+
+        <item
+            android:id="@+id/nav_save"
+            android:icon="@android:drawable/ic_menu_save"
+            android:title="@string/save" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_selall"
+            android:icon="?attr/actionModeSelectAllDrawable"
+            android:title="@string/selal" />
+        <item
+            android:id="@+id/nav_copy"
+            android:icon="?attr/actionModeCopyDrawable"
+            android:title="@string/copy" />
+        <item
+            android:id="@+id/nav_paste"
+            android:icon="?attr/actionModePasteDrawable"
+            android:title="@string/paste" />
+
+    </group>
+
+
+    <item
+        android:id="@+id/nav_help"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/help" />
+
+    <!--item
+        android:id="@+id/nav_fishki"
+        android:title="@string/action_fishki" /-->
+
+    <!--item android:title="@string/action_about_chu">
+        <menu>
+            <item
+                android:id="@+id/about_chu"
+                android:icon="@drawable/chu_icon"
+                android:title="Share" />
+
+        </menu>
+    </item-->
+
+</menu>
