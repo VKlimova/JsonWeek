@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -32,54 +33,55 @@ import android.widget.EditText;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.view.View;
+
+import java.net.URL;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public String[] daySchedule, dayName;
-    TextView dayScheduleTextView;
+    public static String[] daySchedule, dayName;
+    static TextView dayScheduleTextView;
     EditText textEdit;
+    static String mJSONstr="";
     boolean isEdit; //True if now in Edit mode
     FloatingActionButton myFab;
-
-    int dayOnScreenID;
+   static int dayOnScreenID;
+    static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Resources res=getResources();
+
         myFab = (FloatingActionButton)findViewById(R.id.fab);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar , R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         dayScheduleTextView = (TextView) findViewById(R.id.dayScheduleText);
         textEdit = (EditText) findViewById(R.id.textEdit);
+
+
         dayScheduleTextView.setMovementMethod(new ScrollingMovementMethod());
-
-
-
         daySchedule = res.getStringArray(R.array.daySchedule);
         dayName = res.getStringArray(R.array.dayName);
         dayOnScreenID=curWeekdayNum()-1;
-
         showDaySchedule(dayOnScreenID);
 
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar , R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
 //        getActionBar().setTitle("Your title");
-
-
 
 
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -161,17 +163,28 @@ public void setEdit(boolean ifEdit) { // Set Edit mode to TRUE or FALSE
 
 }
 
-    public void showDaySchedule(int dayID){
+    public static void showDaySchedule(int dayID){
 //        dayScheduleTextView.setText(Html.fromHtml("<font size=\"40\" face=\"arial\" color=\"red\">"+dayName[dayID]+"</font><br/>"));
-        getSupportActionBar().setTitle(dayName[dayID]);
+
+        toolbar.setTitle(dayName[dayID]);
+
+        Log.i("WD", dayID + " " + dayName[dayID] + " " + " " + toolbar.getTitle() + daySchedule[dayID]);
+
         dayScheduleTextView.setText(daySchedule[dayID]);
+//        dayScheduleTextView.append(mJSONstr);
 
     }
 
     public int curWeekdayNum(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        int i=day-1;
+        int i;
+        if (day > 0) {
+            i = day - 1;
+        } else {
+            i = 7;
+        }
+
         Log.i("WD", "curWeekdayNum day=" + i);
 
         return i;
@@ -196,48 +209,44 @@ public void setEdit(boolean ifEdit) { // Set Edit mode to TRUE or FALSE
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        android.app.FragmentManager manager = getFragmentManager();
+        switch (id) {
+            case R.id.nav_help:
+                HelpDialogFragment helpDialogFragment = new HelpDialogFragment();
+                helpDialogFragment.show(manager, "dialog");
+                break;
 
-                if (id == R.id.nav_help){  //Open dialog box
-                    android.app.FragmentManager manager = getFragmentManager();
-                    //getSupportFragmentManager();
-                    MyDialogFragment myDialogFragment = new MyDialogFragment();
-                    myDialogFragment.show(manager, "dialog");
-                }
+            case R.id.nav_shar:
+                Share(dayName[dayOnScreenID], dayName[dayOnScreenID] + "\n\n" + daySchedule[dayOnScreenID]);
+                break;
 
-                else {
+            case R.id.nav_edit:
+                myFab.performClick();
+                break; //nav_edit
 
-//                    String iurl = getString(R.string.action_insta_link);
-//                    //      Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
-//                    if (id == R.id.nav_insta) {
-//                        iurl = getString(R.string.action_insta_link);
-//                    } else if (id == R.id.nav_vk) {
-//                        iurl = getString(R.string.action_vk_link);
-//                    } else if (id == R.id.nav_youtube) {
-//                        iurl = getString(R.string.action_youtube_link);
-//                    } else if (id == R.id.nav_shop) {
-//                        iurl = getString(R.string.action_shop_link);
-//                    }
-//                    Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse(iurl));
-//                    i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    i2.setPackage("com.android.chrome");
-//                    try {
-//                        startActivity(i2);
-//                    } catch (android.content.ActivityNotFoundException e) {
-//                        // Chrome is probably not installed
-//                        // Try with the default browser
-//                i2.setPackage(null);
-//                startActivity(i2);
-//            }
+            case R.id.nav_import:
+                ImportDialogFragment importDialogFragment = new ImportDialogFragment();
+                importDialogFragment.show(manager, "dialog");
+
+                break; //nav_import
+            case R.id.nav_reset:
+                Resources res=getResources();
+                daySchedule = res.getStringArray(R.array.daySchedule);
+                dayName = res.getStringArray(R.array.dayName);
+                showDaySchedule(dayOnScreenID);
+
+                break;
+
+        }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        }
-
 
         return true;
     }
 
-    public static class MyDialogFragment extends DialogFragment {
+    //    H E L P      d i a l o g
+    public static class HelpDialogFragment extends DialogFragment {
         //  @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -259,4 +268,90 @@ public void setEdit(boolean ifEdit) { // Set Edit mode to TRUE or FALSE
         }
     }
 
+//       I M P O R T     d i a l o g
+    public static class ImportDialogFragment extends DialogFragment {
+        //  @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            String title = getString(R.string.impor);
+            String button1String = "Ok";
+            String button2String = "Cancel";
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View view = inflater.inflate(R.layout.import_fragment, null);
+            builder.setView(view);
+            //           builder.setTitle(title);  // заголовок
+            builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Dialog f = (Dialog) dialog;
+                    EditText JSONtxt;
+                    JSONtxt = (EditText) f.findViewById(R.id.import_str);
+                    mJSONstr=JSONtxt.getText().toString();
+                    Log.i("WD", "mJSONstr="+mJSONstr);
+
+                    class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
+
+                        @Override
+                        protected void onPostExecute(String[] result) {
+                            super.onPostExecute(result);
+                            showDaySchedule(dayOnScreenID);
+                        }
+
+
+                    @Override
+                    protected String[] doInBackground(String... params) {
+
+                        if (params.length == 0) {
+                            return null;
+                        }
+
+
+// "https://jsonblob.com/api/jsonBlob/d2ed8f05-cb77-11e7-a404-4b06c927b36e"
+                        try {
+                            Log.i("WD", "in import");
+                            URL scheduleRequestUrl = NetworkUtils.buildUrl(mJSONstr);
+                            String jsonScheduleResponse = NetworkUtils
+                                    .getResponseFromHttpUrl(scheduleRequestUrl);
+
+                            //String[] simpleJsonData =
+                                    JSONutils.getSimpleStringsFromJson(jsonScheduleResponse);
+
+                            Log.i("WD", "showDaySchedule(dayOnScreenID)");
+                        } catch (Exception e) {
+                            Log.i("WD", "exception");
+                            e.printStackTrace();
+                        }
+
+                    return null;}}
+                new FetchWeatherTask().execute("");
+                }
+            });
+            builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+            builder.setCancelable(true);
+            //           builder.setIcon(R.drawable.chu_splin);
+
+            return builder.create();
+        }
+    }
+
+    public void Share(String text1, String text2){
+
+        // S H A R E intent
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, text1);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text2);
+
+        shareIntent.setType("image/jpeg");
+        Intent chooser=Intent.createChooser(shareIntent, getString(R.string.shareTxt));
+        startActivity(chooser);
+    };
 }

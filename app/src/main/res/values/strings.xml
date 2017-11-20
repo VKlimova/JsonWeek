@@ -6,6 +6,7 @@
     <string name="paste">Paste</string>
     <string name="shar">Share</string>
     <string name="impor">Import</string>
+    <string name="reset">Reset</string>
     <string name="save">Save</string>
     <string name="send">Send</string>
     <string name="help">Help</string>
@@ -71,4 +72,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="help1">Делай добро!</string>
+    <string name="shareTxt">Поделиться расписанием</string>
+    <string name="imporTxt">Введите адрес JSON - расписания</string>
+    <string name="json1">https://jsonblob.com/api/jsonBlob/d2ed8f05-cb77-11e7-a404-4b06c927b36e</string>
 </resources>
