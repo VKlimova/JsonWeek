@@ -1,13 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/save"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/left"
         android:icon="@android:drawable/ic_media_rew"
-        android:title="left"
+        android:title="@string/left"
         app:showAsAction="always" />
     <item
         android:id="@+id/right"
         android:icon="@android:drawable/ic_media_ff"
-        android:title="right"
+        android:title="@string/right"
         app:showAsAction="always" />
 </menu>

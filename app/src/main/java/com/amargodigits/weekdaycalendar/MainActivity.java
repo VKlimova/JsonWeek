@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton myFab;
    static int dayOnScreenID;
     static Toolbar toolbar;
+    MenuItem saveMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +121,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawable.mutate();
             drawable.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
         }
+
+        saveMenuItem = menu.findItem(R.id.save);
+
         return true;
+
     };
 
     @Override
@@ -141,6 +147,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
                     dayOnScreenID = 0;
                 }
+
+                break;
+
+            case R.id.save:
+            {
+                Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
+            }
+
+            break;
         }
         setEdit(false);
 
@@ -149,16 +164,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 public void setEdit(boolean ifEdit) { // Set Edit mode to TRUE or FALSE
-    if (ifEdit) {
+    if (ifEdit) {  // Going to Edit Mode
         isEdit=true;
         dayScheduleTextView.setVisibility(View.INVISIBLE);
         textEdit.setVisibility(View.VISIBLE);
         myFab.setImageResource(android.R.drawable.ic_menu_revert);
-    } else {
+        saveMenuItem.setVisible(true);
+
+    } else {    // Going to View Mode
         isEdit=false;
         dayScheduleTextView.setVisibility(View.VISIBLE);
         textEdit.setVisibility(View.INVISIBLE);
         myFab.setImageResource(android.R.drawable.ic_menu_edit);
+        saveMenuItem.setVisible(false);
     }
 
 }
@@ -355,3 +373,8 @@ public void setEdit(boolean ifEdit) { // Set Edit mode to TRUE or FALSE
         startActivity(chooser);
     };
 }
+
+// TODO Save notes to internal SQL
+// TODO Swipe left-right
+// Export one - Export All
+

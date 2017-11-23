@@ -10,6 +10,8 @@
     <string name="save">Save</string>
     <string name="send">Send</string>
     <string name="help">Help</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
 
 
     <string-array name="daySchedule">
