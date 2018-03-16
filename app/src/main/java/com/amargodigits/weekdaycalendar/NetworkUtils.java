@@ -32,34 +32,15 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-//    private static final String DYNAMIC_WEATHER_URL =
-//            "https://andfun-weather.udacity.com/weather";
-
-//    private static final String STATIC_WEATHER_URL =
-//            "https://andfun-weather.udacity.com/staticweather";
 
     private static final String BASE_URL = "https://jsonblob.com/api/jsonBlob/d2ed8f05-cb77-11e7-a404-4b06c927b36e";
 
-    /*
-     * NOTE: These values only effect responses from OpenWeatherMap, NOT from the fake weather
-     * server. They are simply here to allow us to teach you how to build a URL if you were to use
-     * a real API.If you want to connect your app to OpenWeatherMap's API, feel free to! However,
-     * we are not going to show you how to do so in this course.
-     */
+
 
     /* The format we want our API to return */
-    private static final String format = "json";
-    /* The units we want our API to return */
-    private static final String units = "metric";
-    /* The number of days we want our API to return */
-    private static final int numDays = 14;
 
-    final static String QUERY_PARAM = "q";
-    final static String LAT_PARAM = "lat";
-    final static String LON_PARAM = "lon";
-    final static String FORMAT_PARAM = "mode";
-    final static String UNITS_PARAM = "units";
-    final static String DAYS_PARAM = "cnt";
+    private static final String format = "json";
+
 
     /**
      * Builds the URL used to talk to the weather server using a location. This location is based
@@ -69,13 +50,8 @@ public final class NetworkUtils {
      * @return The URL to use to query the weather server.
      */
     public static URL buildUrl(String locationQuery) {
-        // COMPLETED (1) Fix this method to return the URL used to query Open Weather Map's API
-        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-//                .appendQueryParameter(QUERY_PARAM, locationQuery)
-//                .appendQueryParameter(FORMAT_PARAM, format)
-//                .appendQueryParameter(UNITS_PARAM, units)
-//                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
-                .build();
+
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon().build();
 
         URL url = null;
         try {
@@ -87,19 +63,6 @@ public final class NetworkUtils {
         Log.v("WD", "Built URI " + url);
 
         return url;
-    }
-
-    /**
-     * Builds the URL used to talk to the weather server using latitude and longitude of a
-     * location.
-     *
-     * @param lat The latitude of the location
-     * @param lon The longitude of the location
-     * @return The Url to use to query the weather server.
-     */
-    public static URL buildUrl(Double lat, Double lon) {
-        /** This will be implemented in a future lesson **/
-        return null;
     }
 
     /**

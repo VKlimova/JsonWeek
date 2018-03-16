@@ -51,6 +51,15 @@
 \n13:00-14:00\n CROSSFIT ($ Сергей)\n KENDO (Вадим)\n TABS+flex(Нэлли)\n
 \n14:00-15:00\n КИКБОКСИНГ ($$$ Эллади)\n
 \n15:00-16:00\n Аэройога ($$$ Ирина)\n
+
+                        \n10:00 - 11:00\n ЗДОРОВАЯ СПИНА (Аня)\n
+\n11:00-12:00\n PUMP (Аня)\n AQUA NOODLES (Алексей)\n
+\n12:00-13:00\n TRX+CYCLE ($ Аня)\n AIKIDO ($$$ Вадим)\n BELLY DANCE (Нелли)\n HYDROTONE ($ Алексей)\n
+\n12:30-14:00\n Кундалини йога (Мария)\n
+\n13:00-14:00\n CROSSFIT ($ Сергей)\n KENDO (Вадим)\n TABS+flex(Нэлли)\n
+\n14:00-15:00\n КИКБОКСИНГ ($$$ Эллади)\n
+\n15:00-16:00\n Аэройога ($$$ Ирина)\n
+
         </item>
         <item>
             \n10:00-11:00\n Изотон (Юля)\n
@@ -77,4 +86,6 @@
     <string name="shareTxt">Поделиться расписанием</string>
     <string name="imporTxt">Введите адрес JSON - расписания</string>
     <string name="json1">https://jsonblob.com/api/jsonBlob/d2ed8f05-cb77-11e7-a404-4b06c927b36e</string>
+
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

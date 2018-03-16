@@ -46,15 +46,22 @@ public final class JSONutils {
         JSONArray scheduleArray = scheduleJson.getJSONArray(OWM_LIST);
        // parsedScheduleData = new String[scheduleArray.length()];
 
+        Log.i("WD", " scheduleJsonStr=" + scheduleJsonStr);
+        Log.i("WD", " scheduleJson=" + scheduleJson);
+        Log.i("WD", " scheduleArray=" + scheduleArray);
+
 
         for (int i = 0; i < scheduleArray.length(); i++) {
 
             /* Get the JSON object representing the day */
             JSONObject dayScheduleObj = scheduleArray.getJSONObject(i);
+            Log.i("WD", " dayScheduleObj=" + dayScheduleObj);
 
             MainActivity.dayName[dayScheduleObj.getInt("dayNumber")]=dayScheduleObj.getString("dayName");
 
             MainActivity.daySchedule[dayScheduleObj.getInt("dayNumber")]=dayScheduleObj.getString("daySchedule");
+
+
 
             Log.i("WD","dayNumber="+dayScheduleObj.getInt("dayNumber"));
             Log.i("WD","dayName="+dayScheduleObj.getString("dayName"));
